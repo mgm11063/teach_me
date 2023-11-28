@@ -40,7 +40,7 @@ SYSTEM_APPS = [
 ]
 
 CUSTOM_APPS = [
-    "common.apps.CommonConfig",
+    "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "profiles.apps.ProfilesConfig",
     "questions.apps.QuestionsConfig",
