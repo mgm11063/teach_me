@@ -19,4 +19,4 @@ class Profile(CoreModel):
     reward_points = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.user.username

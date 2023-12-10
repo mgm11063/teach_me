@@ -5,9 +5,9 @@ from questions.models import Question
 
 
 class Answer(CoreModel):
-    content = models.TextField()
+    content = models.TextField(max_length=999)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Answer to {self.question.title}"
+        return self.question.title
