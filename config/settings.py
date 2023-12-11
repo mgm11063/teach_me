@@ -131,14 +131,6 @@ USE_TZ = True
 STATIC_URL = "static/"
 AUTH_USER_MODEL = "users.User"
 
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
-        "config.authentication.TrustMeBroAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-        "config.authentication.JWTAuthentication",
-    ],
-}
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
