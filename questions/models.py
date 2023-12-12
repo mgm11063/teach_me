@@ -7,7 +7,7 @@ from categories.models import Category
 class Question(CoreModel):
     title = models.CharField(max_length=255)
     content = models.TextField(max_length=999)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,related_name='questions', on_delete=models.CASCADE)
     reward = models.PositiveIntegerField(default=0)
     categories = models.ManyToManyField(Category)
 
