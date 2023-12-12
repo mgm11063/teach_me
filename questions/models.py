@@ -13,3 +13,6 @@ class Question(CoreModel):
 
     def __str__(self):
         return self.title
+class QuestionMedia(CoreModel):
+    question = models.ForeignKey(Question, related_name='media', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='questions/media/')
