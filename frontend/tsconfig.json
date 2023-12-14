@@ -2,15 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".", // 현재 디렉토리를 기준으로 함
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ] // '@/components'를 'components' 디렉토리에 매핑
+      "@/components/*": ["components/*"] // '@/components'를 'components' 디렉토리에 매핑
     },
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -28,13 +22,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
