@@ -1,9 +1,7 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next'
+import './globals.css'
+import Nav from '@/components/Nav'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,14 +14,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <nav className="flex justify-between w-40">
-          <Link href="/">Home</Link>
-          <Link href="/questions">Questions</Link>
-        </nav>
-        {children}
-      </body>
-    </html>
+    <>
+      <div className="flex h-screen bg-gray-100">
+        <aside className=" w-72 bg-C-dark px-5" aria-label="Sidebar">
+          <Nav />
+        </aside>
+        <main className="flex-1 p-8">
+          {children}
+        </main>
+      </div>
+    </>
   )
 }
