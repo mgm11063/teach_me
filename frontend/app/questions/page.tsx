@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
 import QuestionCards from "@/components/QuestionCards";
+import { getServerSideData } from "@/libs/service/getServerSideData";
 
 export const metadata: Metadata = {
     title: 'Questions',
     description: 'Questions',
 }
+export const getServerSideProps = getServerSideData('https://api.example.com/data');
 
-
-export default function Questions() {
+export default function Questions({ error }) {
     const projects = [
         {
             id: 1,
@@ -20,6 +21,9 @@ export default function Questions() {
             ],
         },
     ];
+    if (error) {
+        return <div>Error loading data</div>;
+    }
     return (
         <>
             <div>
