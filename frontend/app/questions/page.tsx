@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 import QuestionCards from "@/components/QuestionCards";
-import { getServerSideData } from "@/libs/service/getServerSideData";
+import fetchData from '@/libs/service/fetchData';
 
 export const metadata: Metadata = {
     title: 'Questions',
     description: 'Questions',
 }
-export const getServerSideProps = getServerSideData('https://api.example.com/data');
 
-export default function Questions({ error }) {
+
+export default async function Questions() {
     const projects = [
         {
             id: 1,
@@ -21,15 +21,14 @@ export default function Questions({ error }) {
             ],
         },
     ];
-    if (error) {
-        return <div>Error loading data</div>;
-    }
+    const data: QuestionsArray = await fetchData("http://127.0.0.1:8000/api/v1/questions")
+
     return (
         <>
             <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {projects.map(project => (
-                        <QuestionCards key={project.id} {...project} />
+                    {data.map(question => (
+                        <QuestionCards key={question.id} {...question} />
                     ))}
                 </div>
             </div>
