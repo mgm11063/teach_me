@@ -1,14 +1,14 @@
-from .models import Question,QuestionMedia
+from .models import Question, QuestionMedia
 from rest_framework import serializers
 from categories.serializers import CategorySerializer
 from answers.serializers import AnswerSerializer
 
 
-
 class QuestionMediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionMedia
-        fields = ['file']
+        fields = ["file"]
+
 
 class QuestionSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, read_only=True)
@@ -25,6 +25,12 @@ class QuestionDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ["media","title", "content", "reward", "user", "categories", "answers",]
-
-
+        fields = [
+            "media",
+            "title",
+            "content",
+            "reward",
+            "user",
+            "categories",
+            "answers",
+        ]

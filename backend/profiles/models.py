@@ -9,7 +9,7 @@ class Profile(CoreModel):
         FEMALE = ("female", "Female")
         Other = ("other", "Other")
 
-    user = models.ForeignKey(User, related_name="profiles", on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     avatar = models.URLField(blank=True)
     gender = models.CharField(
         max_length=10,
@@ -19,4 +19,4 @@ class Profile(CoreModel):
     reward_points = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username}'s profile"
