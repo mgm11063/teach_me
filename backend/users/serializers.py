@@ -36,6 +36,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            "id",UserProfile "username",
+            "id",
+            "username",
             "profile",
         ]
