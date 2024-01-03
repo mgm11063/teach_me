@@ -12,16 +12,24 @@ class QuestionMediaSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, read_only=True)
+    user = serializers.SerializerMethodField()
 
     class Meta:
         model = Question
         fields = ["title", "content", "reward", "user", "categories"]
+
+    def get_user(self, obj):
+        from users.serializers import UserProfileSerializer  # lazy import
+
+        serializer = UserProfileSerializer(obj.user)
+        return serializer.data
 
 
 class QuestionDetailSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True)
     categories = CategorySerializer(many=True, read_only=True)
     media = QuestionMediaSerializer(many=True, read_only=True)
+    user = serializers.SerializerMethodField()
 
     class Meta:
         model = Question
@@ -34,3 +42,9 @@ class QuestionDetailSerializer(serializers.ModelSerializer):
             "categories",
             "answers",
         ]
+
+    def get_user(self, obj):
+        from users.serializers import UserProfileSerializer  # lazy import
+
+        serializer = UserProfileSerializer(obj.user)
+        return serializer.data

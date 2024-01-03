@@ -1,6 +1,5 @@
-
 from .models import Question
-from .serializers import QuestionSerializer,QuestionDetailSerializer
+from .serializers import QuestionSerializer, QuestionDetailSerializer
 from .services import handle_uploaded_files
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
@@ -29,22 +28,23 @@ class QuestionListView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class QuestionDetailView(RetrieveAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionDetailSerializer
+
 
 class QuestionMediaUploadView(APIView):
     def post(self, request, question_id):
         question = get_object_or_404(Question, pk=question_id)
 
         if len(request.FILES) > 5:
-            return Response({"error": "최대 5개의 파일만 업로드할 수 있습니다."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "최대 5개의 파일만 업로드할 수 있습니다."}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         response = handle_uploaded_files(question, request.FILES.values())
         if "error" in response:
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(response, status=status.HTTP_201_CREATED)
-
- 
- 
